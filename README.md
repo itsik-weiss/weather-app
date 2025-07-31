@@ -60,14 +60,39 @@ http://localhost:3000
 
 ### Using Docker
 
-1. Build the image with your preferred city:
+1. Build the image:
 ```bash
-docker build --build-arg CITY_NAME=your_city -t weather-app .
+docker build -t weather-app .
 ```
 
 2. Run the container:
 ```bash
 docker run -p 3000:3000 weather-app
+```
+
+3. Build with a custom city:
+```bash
+docker build --build-arg CITY_NAME=paris -t weather-app .
+```
+
+### Docker Compose
+
+Run the application:
+```bash
+docker-compose up
+```
+
+With a custom city:
+```bash
+CITY_NAME=london docker-compose up
+```
+
+### Docker Testing
+
+Run tests in Docker:
+```bash
+docker build -f Dockerfile.test -t weather-app-test .
+docker run weather-app-test
 ```
 
 ## API Endpoint
@@ -97,3 +122,22 @@ Example response:
 - Open-Meteo API
 - Docker
 - HTML5/CSS3
+
+## Testing
+
+Simple tests to check if the app works correctly.
+
+### Running Tests
+
+Run the basic tests:
+```bash
+python simple_test.py
+```
+
+### Test Coverage
+
+The tests check:
+- ✅ Weather icon mapping
+- ✅ Weather description mapping
+- ✅ Basic API response
+- ✅ Error handling for invalid cities
